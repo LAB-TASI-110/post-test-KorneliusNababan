@@ -1,61 +1,52 @@
 #include <stdio.h>
 #include <string.h>
 
-// Fungsi modular untuk menghitung total
-int hitungTotalPesanan(int harga, int qty) {
-    return harga * qty;
-}
+// Mendefinisikan struktur data pesanan
+struct Pesanan {
+    char namaPelanggan[50];
+    char namaMenu[50];
+    double hargaTotal;
+};
 
 int main() {
-    char daftarNama[50][100];
-    int daftarHarga[50];
-    int n, i;
+    int jumlahPesanan;
 
-    printf("Masukkan jumlah jenis menu: ");
-    // Validasi apakah input benar-benar angka
-    if (scanf("%d", &n) != 1 || n <= 0) {
-        printf("Error: Masukkan jumlah menu dalam bentuk angka positif!\n");
-        return 0;
-    }
+    printf("=== Operasional Kafetaria IT Del ===\n");
+    printf("Masukkan jumlah pesanan hari ini: ");
+    scanf("%d", &jumlahPesanan);
+    
+    // Membersihkan buffer setelah scanf
+    getchar(); 
 
-    if (n > 50) {
-        printf("Kapasitas maksimal hanya 50 menu!\n");
-        return 0;
-    }
+    struct Pesanan daftarPesanan[jumlahPesanan];
 
-    // Input data menu
-    for (i = 0; i < n; i++) {
-        printf("\n--- Data Menu %d ---\n", i + 1);
-        printf("Nama Menu : ");
-        // " %[^\n]" berfungsi membaca kalimat sampai bertemu Enter (termasuk spasi)
-        scanf(" %[^\n]", daftarNama[i]);
+    // Proses Input Data
+    for (int i = 0; i < jumlahPesanan; i++) {
+        printf("\nData Pesanan ke-%d\n", i + 1);
         
-        printf("Harga     : ");
-        scanf("%d", &daftarHarga[i]);
+        printf("Nama Pelanggan: ");
+        fgets(daftarPesanan[i].namaPelanggan, sizeof(daftarPesanan[i].namaPelanggan), stdin);
+        daftarPesanan[i].namaPelanggan[strcspn(daftarPesanan[i].namaPelanggan, "\n")] = 0; // Menghapus newline
+
+        printf("Nama Menu     : ");
+        fgets(daftarPesanan[i].namaMenu, sizeof(daftarPesanan[i].namaMenu), stdin);
+        daftarPesanan[i].namaMenu[strcspn(daftarPesanan[i].namaMenu, "\n")] = 0;
+
+        printf("Total Harga   : ");
+        scanf("%lf", &daftarPesanan[i].hargaTotal);
+        getchar(); // Membersihkan buffer
     }
 
-    int kodePilihan, qty;
-    printf("\n============================\n");
-    printf("      FORM PEMESANAN       \n");
-    printf("============================\n");
-    printf("Pilih Kode Menu (1-%d): ", n);
-    scanf("%d", &kodePilihan);
-    printf("Jumlah Porsi: ");
-    scanf("%d", &qty);
-
-    // Logika pemetaan indeks (Kode 1 -> Indeks 0)
-    if (kodePilihan < 1 || kodePilihan > n) {
-        printf("\nMenu Tidak Tersedia!\n");
-    } else {
-        int indeks = kodePilihan - 1;
-        int total = hitungTotalPesanan(daftarHarga[indeks], qty);
-
-        // Output Struk
-        printf("\n[Kafetaria IT Del]\n");
-        printf("Menu  : %s\n", daftarNama[indeks]);
-        printf("Porsi : %d\n", qty);
-        printf("Total : Rp %d\n", total);
-        printf("----------------------------\n");
+    // Menampilkan Laporan Singkat
+    printf("\n\n=== Ringkasan Operasional Kafetaria ===\n");
+    printf("%-20s | %-20s | %-10s\n", "Nama Pelanggan", "Menu", "Harga");
+    printf("------------------------------------------------------------\n");
+    
+    for (int i = 0; i < jumlahPesanan; i++) {
+        printf("%-20s | %-20s | Rp %.2f\n", 
+               daftarPesanan[i].namaPelanggan, 
+               daftarPesanan[i].namaMenu, 
+               daftarPesanan[i].hargaTotal);
     }
 
     return 0;

@@ -1,75 +1,87 @@
 #include <stdio.h>
 #include <string.h>
 
-/**
- * Program: Del-Express Shipping System
- * Author: Pakar Pemrograman C
- */
-
-void cetakStruk(char kota[], float bButet) {
-    float bUcok = bButet * 1.5; // Berat Ucok 3/2 dari Butet
-    float totalBerat = bButet + bUcok;
-    int hargaPerKg = 0;
-    char namaKota[20];
-    char promo[50] = "Tidak ada promo";
-
-    // Menentukan Harga Berdasarkan Kode Kota
-    if (strcmp(kota, "MDN") == 0) {
-        hargaPerKg = 15000;
-        strcpy(namaKota, "MEDAN");
-    } else if (strcmp(kota, "JKT") == 0) {
-        hargaPerKg = 25000;
-        strcpy(namaKota, "JAKARTA");
-    } else if (strcmp(kota, "BLG") == 0) {
-        hargaPerKg = 10000;
-        strcpy(namaKota, "BALIGE");
-    } else if (strcmp(kota, "SBY") == 0) {
-        hargaPerKg = 30000;
-        strcpy(namaKota, "SURABAYA");
-    } else {
-        printf("Kode Kota %s Tidak Dikenal!\n", kota);
-        return;
-    }
-
-    float totalOngkos = totalBerat * hargaPerKg;
-
-    // Logika Promo Berdasarkan Total Berat
-    if (totalBerat > 10) {
-        totalOngkos *= 0.9;
-        strcpy(promo, "Diskon 10% (Berat > 10kg)");
-    } else if (totalBerat > 5) {
-        totalOngkos *= 0.95;
-        strcpy(promo, "Diskon 5% (Berat > 5kg)");
-    }
-
-    // Output Struk Pembayaran
-    printf("\n========= STRUK PEMBAYARAN DEL-EXPRESS =========\n");
-    printf("Kota Tujuan             : %s\n", namaKota);
-    printf("Berat Paket Butet       : %.2f kg\n", bButet);
-    printf("Berat Paket Ucok (3/2)  : %.2f kg\n", bUcok);
-    printf("Total Berat             : %.2f kg\n", totalBerat);
-    printf("Total Ongkos Kirim      : Rp %.2f\n", totalOngkos);
-    printf("Informasi Promo         : %s\n", promo);
-    printf("================================================\n");
-}
-
 int main() {
-    char inputKota[10];
-    float beratIn;
+    // Deklarasi variabel untuk data paket
+    char kode[5];
+    float berat_butet = 1.0; // Berat paket Butet (1kg)
+    float berat_ucok = 1.5;  // Berat paket Ucok (3/2 kg)
+    float total_berat, total_ongkir, diskon, harga_per_kg;
+    char *nama_kota, *keterangan;
+
+    // Menampilkan header program
+    printf("=== Program Input Pengiriman Del Express ===\n");
+    printf("Masukkan Kode Kota (MDN/BLG/JKT/SBY) dan Jumlah Paket.\n");
+    printf("Ketik 'END' untuk mengakhiri input.\n\n");
 
     while (1) {
-        // Input Kode Kota
-        scanf("%s", inputKota);
+        printf("Masukkan Kode Kota: ");
+        scanf("%s", kode);
+
+        // Berhenti jika user memasukkan END
+        if (strcmp(kode, "END") == 0) {
+            break;
+        }
+
+        int jumlah_paket;
+        printf("Masukkan Jumlah Paket: ");
+        scanf("%d", &jumlah_paket);
+
+        // Logika penentuan harga dan kota berdasarkan kode
+        if (strcmp(kode, "MDN") == 0) {
+            nama_kota = "Medan";
+            harga_per_kg = 8000;
+            keterangan = "Dalam Pulau";
+        } else if (strcmp(kode, "BLG") == 0) {
+            nama_kota = "Balige";
+            harga_per_kg = 5000;
+            keterangan = "Dalam Pulau";
+        } else if (strcmp(kode, "JKT") == 0) {
+            nama_kota = "Jakarta";
+            harga_per_kg = 12000;
+            keterangan = "Luar Pulau";
+        } else if (strcmp(kode, "SBY") == 0) {
+            nama_kota = "Surabaya";
+            harga_per_kg = 13000;
+            keterangan = "Luar Pulau";
+        } else {
+            printf("Kode kota tidak valid!\n\n");
+            continue;
+        }
+
+        // Kalkulasi berat per transaksi (Butet + Ucok) * Jumlah Paket
+        total_berat = (berat_butet + berat_ucok) * jumlah_paket;
         
-        // Cek penghenti program
-        if (strcmp(inputKota, "END") == 0) break;
+        // Kalkulasi ongkir dasar
+        total_ongkir = total_berat * harga_per_kg;
 
-        // Input Berat Paket Butet
-        scanf("%f", &beratIn);
+        // Cek promo: Diskon 10% jika berat > 10kg
+        diskon = 0;
+        if (total_berat > 10) {
+            diskon = total_ongkir * 0.10;
+            total_ongkir -= diskon;
+        }
 
-        // Proses dan Cetak
-        cetakStruk(inputKota, beratIn);
+        // Output Struk Pembayaran
+        printf("\n================ STRUK PEMBAYARAN ================\n");
+        printf("Kota Tujuan          : %s (%s)\n", nama_kota, kode);
+        printf("Berat Paket Butet    : %.1f kg\n", berat_butet * jumlah_paket);
+        printf("Berat Paket Ucok     : %.1f kg\n", berat_ucok * jumlah_paket);
+        printf("Total Berat          : %.1f kg\n", total_berat);
+        
+        // Cek promo: Asuransi gratis untuk Luar Pulau
+        if (strcmp(keterangan, "Luar Pulau") == 0) {
+            printf("Info Tambahan        : Gratis Asuransi (Luar Pulau)\n");
+        }
+
+        if (diskon > 0) {
+            printf("Diskon (Promo >10kg) : Rp %.0f\n", diskon);
+        }
+
+        printf("Total Ongkos Kirim   : Rp %.0f\n", total_ongkir);
+        printf("==================================================\n\n");
     }
 
+    printf("Program Selesai. Terima kasih.\n");
     return 0;
 }

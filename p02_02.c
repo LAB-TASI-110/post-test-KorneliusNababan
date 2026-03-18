@@ -1,51 +1,51 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
-#define MAX 100
-
-// PILAR 3: FUNGSI MODULAR
-// Fungsi untuk menghitung dan menampilkan stok berdasarkan ID kategori
-void hitungStok(int n, int daftarStok[], char daftarNama[][50], int cariID) {
-    // PILAR 4: VALIDASI (Error Handling)
-    if (cariID < 1 || cariID > n) {
-        printf("Kode %d Tidak Dikenal!\n", cariID);
-    } else {
-        // Pemetaan index: Manusia (1..N) -> C (0..N-1)
-        int index = cariID - 1;
-
-        // FORMAT OUTPUT: Struk Ringkas sesuai Pilar 3
-        printf("\n--- STRUK GUDANG ---\n");
-        printf("Kategori: %d | Nama Barang: %s | Total Stok: %d\n", 
-                cariID, daftarNama[index], daftarStok[index]);
-        printf("--------------------\n");
-    }
-}
+// 1. Mendefinisikan struktur data untuk stok barang (S1, S2, ... SN)
+struct Barang {
+    char nama[50];
+    int stok;
+};
 
 int main() {
-    int n, cariID;
-    int stok[MAX];
-    char nama[MAX][50];
+    // Menentukan jumlah total data (N = 4 lembar data)
+    int N = 4;
+    
+    // 2. Inisialisasi deret stok berdasarkan studi kasus
+    struct Barang daftarStok[] = {
+        {"MINYAK", 120},
+        {"ROK PRAMUKA", 5},
+        {"GULA", 85},
+        {"DASI SD", 22}
+    };
 
-    // Input pertama: Jumlah total data (N)
-    printf("N : ");
-    if (scanf("%d", &n) != 1 || n <= 0) {
-        return 0; // Berhenti jika N = 0 atau input tidak valid
+    char kategoriDicari[20];
+    int totalStokKategori = 0;
+
+    // Menampilkan daftar barang yang tersedia di gudang
+    printf("=== DATA STOK GUDANG ===\n");
+    for(int i = 0; i < N; i++) {
+        printf("%d. %s (%d PCS)\n", i+1, daftarStok[i].nama, daftarStok[i].stok);
     }
 
-    // Input kedua: Pengisian data stok dan nama
-    // Masukkan data secara berurutan
-    for (int i = 0; i < n; i++) {
-        // Format: Nama_Barang Stok (Gunakan underscore untuk nama dengan spasi)
-        printf("Data %d (Nama Stok): ", i + 1);
-        scanf("%s %d", nama[i], &stok[i]);
+    // 3. Input kode kategori barang yang diminta
+    printf("\nMasukkan kategori barang yang ingin dihitung (misal: SD, PRAMUKA): ");
+    scanf("%s", kategoriDicari);
+
+    // Proses pencarian dan penjumlahan stok berdasarkan kategori
+    for(int i = 0; i < N; i++) {
+        // Menggunakan strstr untuk mengecek apakah kategori ada di dalam nama barang
+        // Contoh: Jika input "SD", maka "DASI SD" akan terhitung
+        if (strstr(daftarStok[i].nama, kategoriDicari) != NULL) {
+            totalStokKategori += daftarStok[i].stok;
+        }
     }
 
-    // Input ketiga: Kode kategori yang dicari
-    printf("\nCari Kode Kategori: ");
-    scanf("%d", &cariID);
-
-    // Memanggil fungsi modular untuk memproses data
-    hitungStok(n, stok, nama, cariID);
+    // Output hasil akhir ke terminal/CLI
+    printf("------------------------------------\n");
+    printf("Total stok untuk kategori '%s' adalah: %d PCS\n", kategoriDicari, totalStokKategori);
+    printf("------------------------------------\n");
 
     return 0;
 }

@@ -1,13 +1,17 @@
-Bertindaklah sebagai seorang pakar di bidang pemrogram c Gunakan pendekatan Chain of Thought; jelaskan logika berpikirmu secara langkah demi langkah sebelum memberikan solusi akhir. Gunakan pembatas --- untuk memisahkan setiap bagian jawaban. dengan tujuan tugas program pengiriman barang Del Express,Tantangan yang harus diselesaikan adalah dua mahasiswa IT Del, Ucok dan Butet, sedang duduk di depan asrama sambil memandangi beberapa dus besar yang tergeletak di samping mereka. Setelah menyelesaikan minggu yang penuh dengan tugas kuliah dan praktikum, mereka akhirnya punya waktu untuk mengirimkan beberapa barang ke kampung halaman masing-masing.
-“Waduh, kalau kita kirim lewat jasa biasa mahal juga ya,” kata Butet sambil menimbang salah satu dus miliknya.
-Ucok kemudian tersenyum dan menunjuk sebuah brosur yang ia temukan di papan pengumuman kampus.
-“Tenang saja, Tet. Katanya ada jasa pengiriman baru namanya Del-Express. Sistemnya transparan dan perhitungannya otomatis,” ujar Ucok.
-Butet langsung terlihat tertarik. “Wah, cocok nih. Kita kan anak IT, masa masih pakai hitung manual!”
-Mereka pun berjalan menuju kantor layanan Del-Express yang berada tidak jauh dari kampus. Setibanya di sana, mereka melihat sebuah papan besar berisi daftar ongkos kirim per kilogram ke beberapa kota tujuan. Tidak jauh dari papan daftar ongkir, terdapat sebuah poster promo menarik yang ditempel di dinding. Saat petugas menimbang paket mereka, ternyata terdapat sedikit perbedaan ukuran dus yang mereka gunakan Butet dengan berat 1 kg dan Ucok 3/2 dari berat Butet Petugas Del-Express kemudian menjelaskan bahwa sistem pengiriman mereka bekerja secara otomatis. Petugas hanya perlu memasukkan kode kota tujuan serta berat paket milik Butet, dan sistem akan menghitung seluruh biaya pengiriman termasuk berat paket milik Ucok. dengan Kode MDN tujuan MEDAN, BLG ke tujuan balige, JKT ke jakarta, SBY ke surabaya     dengan input MDN
+Bertindaklah sebagai seorang yang mahir di dalam programmer dengan menggunakan bahasa c dan ada sebuah study case yang berjudul daftar ongkos kirim del express sebanyak 4 tempat tujuan ke tujuan medan dengan kode kota MDN ongkos kirim barang 8000 dan keterangan dalam pulau , ke balige dengan kode kota BLG ongkos kirim 5000 dan keterangan dalam pulau , jakarta dengan kode kota JKT ongkos kirim 12000 dan keterangan luar pulau , dan surabaya dngan kode kota SBY ongkos kirim 13000 dan keterangan luar pulau dan terdapat sebuah poster promo dangan syarat dan keterangn sebagai berikut syaratnya ialah total dengan berat pengiriman lebih dari 10 kg mendapatkan diskon ongkir sebesar 10% dan kedua adalah pengiriman ke kota luar pulau mendapatkan asuransi gratis dan saat petugas menimbang paket terdapat perbedaan. paket butet seberat 1kg dan ucok 3/2 kg kemudian pengguna hanya perlu memasukkan sebuah daftar kode kota ialah sebagai berikut MDN medan, BLG balige, JKT jakarta, SBY surabaya kemudian user memasukkan inputan
+
+MDN
+
 5
+
 JKT
+
 3
+
 BLG
-4
-END dan 
-outputnya adalah Struk Pembayaran yang terdiri dari: Kota tujuan, Berat paket Butet, Berat paket Ucok, Total berat, Total ongkos kirim, Informasi promo yang diperoleh,
+
+3
+
+END
+
+lalu akan menampilkan sebuah struk pembayaran yang terdiri dari kota tujuan, berat paket butet, berat paket ucok, total berat, total ongkos kirim,informasi yang diperoleh sebuah kode tersebut akan dijalankan di tools vs code, terminal, cli dan comand prompt, tidak ada kriteria khusus terhadap program , namun jika anda memberikan kode ke dalam bentuk bahasa pemrograman C. jelaskan menggunakan // sebagai penjelasan

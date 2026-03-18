@@ -1,19 +1,6 @@
-Judul programnya adalah Sistem Manajemen Stok Gudang 
-Bertindaklah sebagai seorang pakar pemrograman C. Gunakan pendekatan Chain of thougt; jelaskan logika pemisahan kategori barang dan cara perhitungan index array secara bertahap sebelum menuliskan kode program. Gunakan pembatas --- untuk memisahkan setiap bagian jawaban agar rapi dan mudah dibaca. 
-PILAR 1: KEJELASAN
-dengan tujuan Membuat program yang mampu menentukan dan menjumlahkan total stok hanya untuk satu kategori barang tertentu yang diminta.
-inti dari permasalahanya adalah Data stok (seperti Minyak: 120, Rok Pramuka: 5, Gula: 85, Dasi SD: 22) tersusun dalam satu deret panjang. Program harus mampu memetakan angka-angka tersebut ke dalam kelompok kategori yang benar. 
-Instruksi secara objektif dengan logika pemetaan index di mana setiap 1 data mewakili 1 kategori unik berdasarkan urutan input.
-PILAR KE2 : KONTEKSTUALISASI
-lingkungan teknis :  Bahasa C standar
-alat yang dijalankan di terminal (CLI) dan komplikasinya gcc
-kondiisinya 
-1. Input pertama: Jumlah total data (N).
-2. Input kedua: Deret stok (s_1, s_2, \dots, s_N).
-3. Input ketiga: Kode kategori yang dicari (berdasarkan urutan 1 sampai N).
-PILAR KE 3 : STRUKTUR & FORMAT 
-Sturukturnya adalah kita Pisahkan kode menjadi fungsi modular (misal: fungsi hitung Stok)
-dengan format output : yang menmpilkan hasil akhir dalam bentuk struk ringkas:Kategori: [ID] | Nama Barang: [Nama] | Total Stok: [Jumlah]. dan juga jelaskan dengan // penjelassan kode di setiap baris 
-PILAR 4: BATASAN 
-Jangan gunakan library eksternal selain <stdio.h> dan <string.h>. Hindari penggunaan alokasi memori dinamis (malloc), gunakan array statis saja. validasi jika kode kategori yang dimasukkan pengguna lebih besar dari N atau kurang dari 1 (Error Handling). Program harus berhenti jika pengguna memasukkan jumlah total data N = 0.
-Silahkan analisis instruksi yang saya berikan melalui prompt yang saya buat 
+Bertindaklah selayaknya seorang yang mahir di dalam bahasa pemrogram c dan ada sebuah study case yang dimana ada sebuah data stok barang yang disimpan di dalam sebuah gudang yag tersusun rapi. kemudian perhatikan pola pada penyimpanan  pada gambar di bawah ini ada sebuah penjelasan yang dimana yang 
+1. jumlah total data disimbolkan sebagai N 
+2. Deret stok sebagai S1,S2,...SN 
+3. kode kategori barang.
+dan ada sebuah lembar sebanyak 4 lembar yang tersusun dan terdiri dari lembar pertama 120 PCS MINYAK,5 PCS ROK PRAMUKA,85 PCS GULA, DAN 22 PCS DASI SD 
+yang dimana progaram tersebut yang diman tujuannya mampu menentukan total stok hanya untuk kategori barang yang diminta program tersebut akan di jalankan di terminal vs code , command prompt cli dan sebelum anda memberikan kode programnya buatkan dengan penjelasan dengan tanda // sebagai komentar penjelasan mengenai program 
